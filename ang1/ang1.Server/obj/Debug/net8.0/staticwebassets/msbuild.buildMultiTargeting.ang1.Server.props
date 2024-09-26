@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ang1.Server.props" />
+</Project>
