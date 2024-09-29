@@ -12,12 +12,16 @@ import { CategoryComponent } from './category/category.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProductComponent } from './product/product.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ServicesComponent } from './services/services.component';
+import { SubServicesComponent } from './sub-services/sub-services.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    ServicesComponent,
+    SubServicesComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -28,6 +32,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
       { path: "Product", component: ProductComponent },
       { path: "Aboutus", component: AboutUsComponent },
       { path: "Contactus", component: ContactUsComponent },
+
+      { path: "Services", component: ServicesComponent },
+      { path: "SubServices/:id", component: SubServicesComponent }
 
     ])
   ],
