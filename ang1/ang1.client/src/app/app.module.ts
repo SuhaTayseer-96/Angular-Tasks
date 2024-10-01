@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, NgForm } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -14,6 +14,10 @@ import { ProductComponent } from './product/product.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ServicesComponent } from './services/services.component';
 import { SubServicesComponent } from './sub-services/sub-services.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
+import { UsersubComponent } from './usersub/usersub.component';
+import { UserComponent } from './user/user.component';
+import { LoginuserComponent } from './loginuser/loginuser.component';
 
 @NgModule({
   declarations: [
@@ -21,20 +25,32 @@ import { SubServicesComponent } from './sub-services/sub-services.component';
     NavBarComponent,
     FooterComponent,
     ServicesComponent,
-    SubServicesComponent
+    SubServicesComponent,
+    SubscriptionComponent,
+    UsersubComponent,
+    UserComponent,
+    LoginuserComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" }, // full just for default
       { path: "Category", component: CategoryComponent },
       { path: "Product", component: ProductComponent },
       { path: "Aboutus", component: AboutUsComponent },
       { path: "Contactus", component: ContactUsComponent },
+      { path: "Home", component: HomeComponent },
 
       { path: "Services", component: ServicesComponent },
-      { path: "SubServices/:id", component: SubServicesComponent }
+      { path: "SubServices/:id", component: SubServicesComponent },
+      { path: "Sub", component: SubscriptionComponent },
+
+      { path: "User", component: UserComponent },
+
+      { path: "Login", component: LoginuserComponent }
+
 
     ])
   ],

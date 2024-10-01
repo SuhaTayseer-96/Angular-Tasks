@@ -1,0 +1,14 @@
+<p>subscribtion works!</p>
+
+
+<div class="card" style="width: 18rem;" *ngFor="let item of subscriptionArry">
+  <div class="card-body">
+    <h5 class="card-title">{{item.subscriptionName}}</h5>
+    <p class="card-text">{{item.subscriptionDescription}}</p>
+    <p class="card-text">{{item.subscriptionAmount}}</p>
+
+    <a routerLink="/Sub/{{item.subscriptionId}}" (click)="addusersuc(item.SubscriptionId)" class="btn btn-primary">Go </a>
+
+
+  </div>
+</div>

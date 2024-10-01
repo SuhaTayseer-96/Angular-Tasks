@@ -39,11 +39,15 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<SubService> SubServices { get; set; }
 
+    public virtual DbSet<Subscription> Subscriptions { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserAddress> UserAddresses { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
+
+    public virtual DbSet<UserSubscription> UserSubscriptions { get; set; }
 
     public virtual DbSet<UserVoucherUsage> UserVoucherUsages { get; set; }
 
@@ -253,6 +257,20 @@ public partial class MyDbContext : DbContext
                 .HasConstraintName("FK_subService_Service");
         });
 
+        modelBuilder.Entity<Subscription>(entity =>
+        {
+            entity.HasKey(e => e.SubscriptionId).HasName("PK__subscrip__4A0F55C7FE1D8651");
+
+            entity.ToTable("subscription");
+
+            entity.Property(e => e.SubscriptionId).HasColumnName("subscriptionID");
+            entity.Property(e => e.SubscriptionAmount).HasColumnName("subscriptionAmount");
+            entity.Property(e => e.SubscriptionDescription).HasColumnName("subscriptionDescription");
+            entity.Property(e => e.SubscriptionName)
+                .HasMaxLength(150)
+                .HasColumnName("subscriptionName");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__Users__1788CCACDAABA97C");
@@ -301,6 +319,26 @@ public partial class MyDbContext : DbContext
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserRole_User");
+        });
+
+        modelBuilder.Entity<UserSubscription>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UserSubs__3213E83F20395E2F");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.EndDate).HasColumnName("endDate");
+            entity.Property(e => e.StartDate).HasColumnName("startDate");
+            entity.Property(e => e.SubServiceId).HasColumnName("subServiceID");
+            entity.Property(e => e.SubscriptionId).HasColumnName("subscriptionID");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.Subscription).WithMany(p => p.UserSubscriptions)
+                .HasForeignKey(d => d.SubscriptionId)
+                .HasConstraintName("FK_Subscription");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserSubscriptions)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_User");
         });
 
         modelBuilder.Entity<UserVoucherUsage>(entity =>

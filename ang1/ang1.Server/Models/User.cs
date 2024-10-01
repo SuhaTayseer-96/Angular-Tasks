@@ -47,5 +47,7 @@ public partial class User
 
     public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 
+    public virtual ICollection<UserSubscription> UserSubscriptions { get; set; } = new List<UserSubscription>();
+
     public virtual ICollection<UserVoucherUsage> UserVoucherUsages { get; set; } = new List<UserVoucherUsage>();
 }
