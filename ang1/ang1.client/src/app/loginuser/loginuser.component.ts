@@ -21,8 +21,13 @@ export class LoginuserComponent {
       form.append(key, data[key])
     }
     this._ser.user(data).subscribe(() => {
-      alert("Welcome Home");
-      this._router.navigate(['/Home'])
+      // check if Email is @admin.com or or not
+      if (data.Email.includes("@admin.com")) {
+        this._router.navigate(['/dashboard']);
+      } else {
+        this._router.navigate(['/Home']);
+         alert("Welcome Home");
+      }
     },
       (error) => {
         alert("Nope")

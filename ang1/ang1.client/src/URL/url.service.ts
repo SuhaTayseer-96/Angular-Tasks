@@ -37,4 +37,9 @@ export class URLService {
 
   }
 
+  addService(data: any): Observable<any> {
+    return this.http.post(`${this.staticData}/Services/AddService`, data)
+
+  }
+
 }

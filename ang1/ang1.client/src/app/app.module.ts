@@ -18,6 +18,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { UsersubComponent } from './usersub/usersub.component';
 import { UserComponent } from './user/user.component';
 import { LoginuserComponent } from './loginuser/loginuser.component';
+import { AddServiceComponent } from './Admin/add-service/add-service.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { LoginuserComponent } from './loginuser/loginuser.component';
     SubscriptionComponent,
     UsersubComponent,
     UserComponent,
-    LoginuserComponent
+    LoginuserComponent,
+    AddServiceComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -49,7 +53,13 @@ import { LoginuserComponent } from './loginuser/loginuser.component';
 
       { path: "User", component: UserComponent },
 
-      { path: "Login", component: LoginuserComponent }
+      { path: "Login", component: LoginuserComponent },
+      {
+        path: "dashboard", component: DashboardComponent, children: [
+          { path: "addService", component: AddServiceComponent },
+          { path: "**", component: DashboardComponent }
+        ]
+      }
 
 
     ])
